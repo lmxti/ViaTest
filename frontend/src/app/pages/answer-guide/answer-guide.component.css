@@ -1,0 +1,168 @@
+/* :host para que el componente llene el <main> (evita espacio en blanco) */
+:host {
+  display: block;
+  flex-grow: 1;
+  background-color: #f4f7f6; /* Fondo gris claro para la página */
+  padding: 30px 40px;
+
+  margin: 0 auto; /* Centra el contenido de la página */
+}
+
+/* --- Títulos y Filtros --- */
+h1 {
+  text-align: center;
+  color: var(--color-azul-oscuro);
+  margin-bottom: 10px;
+}
+p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 1.1em;
+}
+
+.filter-form {
+  margin-bottom: 20px;
+}
+.filter-controls {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap; /* Para que se ajusten en móviles */
+  justify-content: center;
+}
+.filter-controls select,
+.filter-controls input {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+.filter-controls input {
+  flex-grow: 1; /* El input de búsqueda ocupa más espacio */
+  min-width: 250px;
+}
+.filter-controls select {
+  min-width: 200px;
+}
+
+hr {
+  margin: 30px 0;
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* --- Estado de Carga y Sin Resultados --- */
+.loading-spinner {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2em;
+  color: #777;
+  font-style: italic;
+}
+/* Estilo para los <p> dentro del <ng-template #noResults> */
+div[ngif="!isLoading"] p {
+  text-align: center;
+  font-size: 1.1em;
+  color: #777;
+}
+
+/* --- Tarjeta de Pregunta --- */
+.question-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px 25px; /* Más padding horizontal */
+  margin-bottom: 25px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  /* overflow: hidden; */ /* Descomenta si algo se desborda */
+}
+
+.question-meta {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 5px;
+}
+.question-meta strong {
+  color: #333;
+}
+
+.question-card h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.15em;
+  line-height: 1.5;
+  color: var(--color-texto-oscuro);
+}
+
+/* --- Opciones --- */
+.options-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+.options-list li {
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.options-list li strong {
+  margin-right: 5px;
+}
+/* Resaltado de la respuesta correcta (cuando está visible) */
+.correct-option {
+  background-color: #d1ecf1; /* Un azul/celeste muy claro */
+  border-color: var(--color-azul-medio);
+  font-weight: 500;
+  color: #0c5460;
+}
+.checkmark {
+  color: #0c5460;
+  font-weight: bold;
+  margin-left: 10px;
+  float: right; /* Alinea la marca a la derecha */
+}
+
+/* --- Botón Mostrar/Ocultar --- */
+.toggle-details-btn {
+  display: inline-block; /* Para que no ocupe todo el ancho */
+  margin-top: 15px;
+  padding: 8px 15px;
+  background-color: #6c757d; /* Gris */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+}
+.toggle-details-btn:hover {
+  background-color: #5a6268;
+}
+
+/* --- Sección de Explicación --- */
+.explanation-section {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f8f9fa; /* Fondo gris claro */
+  border-left: 4px solid var(--color-azul-medio);
+  border-radius: 4px;
+}
+.explanation-section strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-texto-oscuro);
+}
+/* Estilos para el HTML renderizado */
+.explanation-section div b, 
+.explanation-section div strong { 
+  font-weight: 600; 
+}
+.explanation-section div ul, 
+.explanation-section div ol { 
+  padding-left: 20px; 
+  margin-top: 5px; 
+}

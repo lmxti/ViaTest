@@ -1,0 +1,43 @@
+<section class="history-section">
+  <h1>Historial de Tests - Clase {{ currentClassType }}</h1>
+  <a [routerLink]="['/clase', currentClassType]" class="back-link">
+  ← Volver al Panel (Clase {{ currentClassType }})
+</a>
+  
+  <div *ngIf="isLoading" class="loading-spinner">
+    Cargando historial... ⏳
+  </div>
+  
+  <ng-container class="history-container" *ngIf="history$ | async as testHistory">
+    <div *ngIf="!isLoading && testHistory.length > 0; else noHistory">
+      <table>
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Resultado</th>
+            <th>Fecha</th>
+            <th>Puntaje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let result of testHistory;  let i = index"
+            [routerLink]="['/historial/details', result.id]"
+            class="history-row"
+            [ngClass]="{'approved-row': result.status === 'Aprobado', 'failed-row': result.status === 'Reprobado'}">
+            <td>{{ i + 1 }}</td>
+            <td class="status">
+              <i *ngIf="result.status === 'Aprobado'" class="fas fa-check-circle" style="color: green;"></i>
+              <i *ngIf="result.status === 'Reprobado'" class="fas fa-times-circle" style="color: red;"></i>
+            </td>
+            <td>{{ result.created_at | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ result.score }} / {{ result.total_questions }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <ng-template #noHistory>
+      <p *ngIf="!isLoading">Aún no has realizado ningún test para esta clase. ¡Completa uno para ver tu progreso aquí!</p>
+    </ng-template>
+  </ng-container>
+</section>

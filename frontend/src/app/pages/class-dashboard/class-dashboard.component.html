@@ -1,0 +1,54 @@
+<ng-container *ngIf="classType$ | async as classType; else loading">
+
+  <h1>{{ title }}</h1>
+  <p>Selecciona una opción para la licencia Clase {{ classType.toUpperCase() }} ({{ getClassName(classType) }}).</p>
+
+  <section class="stats-section">
+    <div class="stat-card">
+      <h3>Tests Realizados</h3>
+      <span class="stat-number">{{ (stats$ | async)?.totalRealizados }}</span>
+    </div>
+    <div class="stat-card">
+      <h3>Tests Aprobados</h3>
+      <span class="stat-number">{{ (stats$ | async)?.totalAprobados }}</span>
+    </div>
+    <div class="stat-card">
+      <h3>% Aprobación</h3>
+      <span class="stat-number">{{ approvalPercentage$ | async }}%</span>
+    </div>
+  </section>
+  <hr class="divider"> <div class="dashboard-options">
+    <div class="option-card">
+      <i class="fas fa-edit card-icon"></i> <h3>Realizar Test</h3>
+      <p>Practica con un test aleatorio de 35 preguntas.</p>
+      <a [routerLink]="['/test', classType]" class="option-button">Iniciar Test</a>
+    </div>
+
+    <div class="option-card coming-soon">
+       <i class="fas fa-tasks card-icon"></i>
+       <h3>Test por Tema</h3>
+       <p>Practica preguntas filtradas por un tema específico.</p>
+       <span class="soon-badge">Próximamente...</span>
+    </div>
+    
+    <div class="option-card">
+      <i class="fas fa-history card-icon"></i>
+      <h3>Historial de Tests</h3>
+      <p>Revisa tus resultados anteriores y tu progreso.</p>
+      <a [routerLink]="['/historial', classType]" class="option-button">Ver Historial</a>
+    </div>
+
+    <div class="option-card">
+      <i class="fas fa-book-open card-icon"></i>
+      <h3>Guía de Estudio</h3>
+      <p>Explora todas las preguntas y respuestas disponibles.</p>
+      <a [routerLink]="['/answer-guide', classType]" class="option-button">Estudiar Preguntas</a>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-template #loading>
+  <p *ngIf="!(classType$ | async)">Error: Tipo de clase no especificado.</p>
+  <p *ngIf="classType$ | async">Cargando datos del panel...</p>
+</ng-template>

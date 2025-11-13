@@ -1,0 +1,123 @@
+/* :host para que el componente llene el <main> (evita espacio en blanco) */
+:host {
+  display: block;
+  flex-grow: 1;
+  background-color: #f4f7f6; /* Fondo gris claro */
+  padding: 30px 20px;
+}
+
+/* Contenedor de carga */
+.loading-container, .no-questions-container {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2em;
+  color: #777;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--color-azul-medio);
+  color: var(--color-texto-claro);
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Encabezado del Test */
+.test-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #eee;
+}
+.test-header h1 {
+  color: var(--color-azul-oscuro);
+  margin-bottom: 5px;
+}
+.test-header p {
+  font-size: 1.1em;
+  color: #555;
+}
+
+/* Contenedor de cada pregunta */
+.question-container {
+  max-width: 800px;
+  margin: 0 auto 30px auto; /* Centrado y con espacio inferior */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.question-container h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: #333;
+}
+.question-number {
+  display: inline-block;
+  background-color: var(--color-azul-medio);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  margin-right: 10px;
+}
+
+/* Opciones de respuesta */
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacio entre opciones */
+}
+.option-label label {
+  display: flex; /* Alinea checkbox/radio con el texto */
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+.option-label label:hover {
+  background-color: #f9f9f9;
+}
+.option-label input {
+  margin-right: 10px;
+  /* Estilos para hacerlos más grandes (opcional) */
+  transform: scale(1.2);
+}
+.option-letter {
+  font-weight: bold;
+  margin-right: 5px;
+  color: #555;
+}
+.option-text {
+  color: #333;
+}
+
+/* Botón de envío */
+.submit-btn {
+  display: block; /* Ocupa todo el ancho */
+  width: 100%;
+  max-width: 800px; /* Mismo ancho que las preguntas */
+  margin: 40px auto 0 auto; /* Centrado */
+  padding: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+  background-color: var(--color-exito); /* Verde */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.submit-btn:hover:not(:disabled) {
+  background-color: #218838; /* Verde oscuro */
+}
+.submit-btn:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}

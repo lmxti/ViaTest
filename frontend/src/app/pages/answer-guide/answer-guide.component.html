@@ -1,0 +1,59 @@
+<h1>Guía de Respuestas - Clase {{ currentClassType }}</h1>
+<p>Explora todas las preguntas disponibles, filtra por categoría o texto para repasar.</p>
+<a [routerLink]="['/clase', currentClassType]" class="back-link">
+  ← Volver al Panel (Clase {{ currentClassType }})
+</a>
+
+<form [formGroup]="filterForm" class="filter-form">
+  <div class="filter-controls">
+    <select formControlName="category" aria-label="Filtrar por categoría">
+      <option value="">-- Todas las Categorías --</option>
+      <option *ngFor="let category of categories" [value]="category.name">
+        {{ category.name }}
+      </option>
+    </select>
+    <input type="text" formControlName="searchText" placeholder="Buscar en texto de pregunta..." aria-label="Buscar por texto">
+  </div>
+</form>
+
+<hr>
+
+<div *ngIf="isLoading" class="loading-spinner">
+  Cargando preguntas... ⏳
+</div>
+
+<div *ngIf="!isLoading">
+  <div *ngIf="filteredQuestions.length > 0; else noResults">
+    <div *ngFor="let question of filteredQuestions" class="question-card">
+      <p class="question-meta">
+        <strong>#{{ question.id }}</strong> | {{ question.category }} | {{ question.points }} Punto(s)
+      </p>
+      <h4>{{ question.text }}</h4>
+      
+      <ul class="options-list">
+        <li *ngFor="let option of question.options"
+            [class.correct-option]="detailsVisibility[question.id] && isCorrect(option.letter, question.correctAnswer)">
+          <strong>{{ option.letter }})</strong> {{ option.text }}
+          <span *ngIf="detailsVisibility[question.id] && isCorrect(option.letter, question.correctAnswer)" class="checkmark"> ✔</span>
+        </li>
+      </ul>
+
+      <button (click)="toggleDetails(question.id)" class="toggle-details-btn">
+        {{ detailsVisibility[question.id] ? 'Ocultar Respuesta/Explicación' : 'Mostrar Respuesta/Explicación' }}
+      </button>
+
+      <div *ngIf="detailsVisibility[question.id]" class="explanation-section">
+        <strong>Explicación:</strong>
+        <div *ngIf="question.explanation; else noExplanation" [innerHTML]="question.explanation"></div>
+        <ng-template #noExplanation>
+          <p><em>(Sin explicación disponible)</em></p>
+        </ng-template>
+      </div>
+
+    </div> </div>
+
+  <ng-template #noResults>
+    <p *ngIf="allQuestions.length === 0">No hay preguntas cargadas para la Clase {{ currentClassType }}.</p>
+    <p *ngIf="allQuestions.length > 0">No se encontraron preguntas que coincidan con los filtros.</p>
+  </ng-template>
+</div>

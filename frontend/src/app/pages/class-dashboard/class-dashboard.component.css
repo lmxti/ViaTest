@@ -1,0 +1,138 @@
+/* :host para que el componente llene el <main> (evita espacio en blanco) */
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #f4f7f6; /* Un fondo gris muy claro para la página */
+  padding: 40px 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+}
+p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* --- Sección de Estadísticas --- */
+.stats-section {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.stat-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  width: 200px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.stat-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 1em;
+  color: #555;
+  font-weight: 500;
+}
+.stat-number {
+  font-size: 2.5em;
+  font-weight: 600;
+  color: var(--color-azul-medio);
+}
+.stat-number:after {
+  content: ''; /* Evita que el '%' se muestre si el valor aún no carga */
+}
+.stat-number:not(:empty):after {
+  content: '';
+}
+
+/* --- Separador --- */
+hr.divider {
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 20px 0 40px 0;
+}
+
+/* --- Sección de Opciones --- */
+.dashboard-options {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.option-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 30px;
+  width: 280px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.option-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.card-icon {
+  font-size: 3em;
+  color: var(--color-azul-medio);
+  margin-bottom: 15px;
+}
+.option-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #343a40;
+  font-size: 1.4em;
+}
+.option-card p {
+  color: #555;
+  font-size: 0.95em;
+  flex-grow: 1; /* Empuja el botón hacia abajo */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.option-button {
+  display: inline-block;
+  background-color: var(--color-exito); /* Verde */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: auto;
+}
+.option-button:hover {
+  background-color: #218838;
+}
+
+/* Tarjeta "Próximamente" */
+.option-card.coming-soon {
+  background-color: #f8f9fa;
+  border-style: dashed;
+  color: #6c757d;
+  justify-content: center; /* Centra el contenido verticalmente */
+}
+.option-card.coming-soon .card-icon { color: #adb5bd; }
+.option-card.coming-soon h3 { color: #6c757d; }
+.soon-badge {
+  background-color: #ffc107;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-top: auto; /* Asegura que esté al final */
+}

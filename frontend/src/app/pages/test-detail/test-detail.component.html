@@ -1,0 +1,56 @@
+<ng-container *ngIf="testDetail$ | async as test; else loading">
+  
+  <h1>Detalle del Test #{{ test.summary.id }}</h1>
+  <p class->
+    Realizado el: {{ test.summary.created_at | date:'dd/MM/yyyy HH:mm' }}
+    (Clase {{ test.summary.license_class }})
+  </p>
+
+  <div class="results-summary" 
+       [ngClass]="{'approved-row': test.summary.status === 'Aprobado', 'failed-row': test.summary.status === 'Reprobado'}">
+    Resultado: <strong>{{ test.summary.status }}</strong> | Puntaje: <strong>{{ test.summary.score }} / {{ test.summary.total_questions }}</strong>
+  </div>
+
+  <hr class="divider">
+  
+  <h2>Preguntas y Respuestas:</h2>
+
+  <div *ngFor="let detail of test.details" class="question-container"
+       [ngClass]="{'correct-answer': detail.isCorrect, 'incorrect-answer': !detail.isCorrect}">
+
+    <h4>{{ detail.question.text }}</h4>
+    <p class="question-meta-detail"><em>Categoría: {{ detail.question.category }} | Puntos: {{ detail.question.points }}</em></p>
+
+    <ul class="options-list">
+      <li *ngFor="let option of detail.question.options"
+          [class.user-answer]="wasUserAnswer(option.letter, detail.userAnswer)"
+          [class.correct-option-detail]="isCorrectAnswer(option.letter, detail.question.correctAnswer)">
+        
+        <strong>{{ option.letter }})</strong> {{ option.text }}
+
+        <span *ngIf="isCorrectAnswer(option.letter, detail.question.correctAnswer)" class="checkmark-correct">
+          ✔ (Correcta)
+        </span>
+        <span *ngIf="wasUserAnswer(option.letter, detail.userAnswer) && !detail.isCorrect" class="checkmark-incorrect">
+          ❌ (Tu respuesta)
+        </span>
+      </li>
+    </ul>
+
+    <button (click)="toggleExplanation(detail.question.id)" class="toggle-explanation-btn">
+      {{ explanationVisibility[detail.question.id] ? 'Ocultar Explicación' : 'Mostrar Explicación' }}
+    </button>
+
+    <div *ngIf="explanationVisibility[detail.question.id]" class="explanation">
+      <strong>Explicación:</strong>
+      <div *ngIf="detail.question.explanation; else noExplanation" [innerHTML]="detail.question.explanation"></div>
+      <ng-template #noExplanation><p><em>(Sin explicación)</em></p></ng-template>
+    </div>
+
+  </div> <a [routerLink]="['/historial', classType]" class="back-link">← Volver al Historial</a>
+
+</ng-container>
+
+<ng-template #loading>
+  <p *ngIf="isLoading" class="loading-spinner">Cargando detalles del test... ⏳</p>
+</ng-template>

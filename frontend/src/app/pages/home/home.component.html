@@ -1,0 +1,87 @@
+<section class="hero-section">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>Prepárate para tu Examen</h1>
+      <p class="hero-description">
+        Estudia con el Libro del Nuevo Conductor, practica con tests ilimitados
+        y sigue tu progreso.
+      </p>
+    </div>
+
+    <div class="hero-image">
+      <img src="assets/images/car-hero.png" alt="Auto Licencia Clase B" />
+      <div class="car-line"></div>
+    </div>
+  </div>
+</section>
+
+<section class="cards-section">
+  <div class="section-header">
+    <h2>Planes disponibles</h2>
+    <p class="section-subtitle">
+      Elige la categoría que mejor se adapte a tus necesidades
+    </p>
+  </div>
+  <div class="cards-container">
+    <div class="info-card">
+      <div class="card-header">
+        <div class="card-title-group">
+          <h3>Clase B</h3>
+          <!-- <span class="badge">Automóviles</span> -->
+          <a [routerLink]="['/clase', 'b']" class="card-button">
+            <span>Comenzar</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="features-list">
+          <li>
+            <div class="feature-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="feature-text">
+              <strong>Formato oficial</strong>
+              <span>35 preguntas - 45 minutos</span>
+            </div>
+          </li>
+          <li>
+            <div class="feature-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <div class="feature-text">
+              <strong>Banco de preguntas</strong>
+            </div>
+          </li>
+          <li>
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="feature-text">
+              <strong>Seguimiento de resultados</strong>
+              <span>Historial completo de tus tests</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-card coming-soon">
+      <div class="card-header">
+        <div class="card-title-group">
+          <h3>Clase C</h3>
+          <span class="badge">Motocicletas</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="coming-soon-content">
+          <i class="fas fa-motorcycle soon-icon"></i>
+          <p class="soon-text">Próximamente...</p>
+          <p class="soon-description">
+            Estamos trabajando para traerte esta categoría muy pronto
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
